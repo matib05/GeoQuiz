@@ -2,6 +2,7 @@ package com.bignerdranch.android.geoquiz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class QuizActivity extends AppCompatActivity {
     private Button mPreviousButton;
     private Button mCheatButton;
     private Button mNextButton;
+    private Button mApiLevelButton;
+    private TextView mApiLevelText;
     private TextView mQuestionTextView;
     private Question[] mQuestionBank = new Question[] {
             new Question(R.string.question_australia, true),
@@ -48,6 +53,15 @@ public class QuizActivity extends AppCompatActivity {
         mPreviousButton = (Button) findViewById(R.id.previous_button);
         mCheatButton = (Button) findViewById(R.id.cheat_button);
         mNextButton = (Button) findViewById(R.id.next_button);
+        mApiLevelButton = (Button) findViewById(R.id.api_button);
+        mApiLevelText = (TextView) findViewById(R.id.api_text);
+
+        mApiLevelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mApiLevelText.setText(Build.VERSION.RELEASE);
+            }
+        });
 
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
